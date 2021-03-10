@@ -13,5 +13,172 @@
       movies, directors, and genres. Users will be able to sign up, update their
       personal information, and create a list of their favorite movies.
     </p>
+
+    <div>
+      <h3>Endpoint Documentation:</h3>
+      <table border="1px solid #000" style="text-align: center">
+        <tr>
+          <th>Business Logic</th>
+          <th>URL (Endpoint)</th>
+          <th>HTTP Method</th>
+          <th>Query Parameters</th>
+          <th>Request Body Data Format</th>
+          <th>Request Example</th>
+          <th>Response Body Data Format</th>
+          <th>Response Example</th>
+        </tr>
+        <tr>
+          <td>Returns a list of all movies</td>
+          <td>/movies</td>
+          <td>GET</td>
+          <td>None</td>
+          <td>None</td>
+          <td>/movies</td>
+          <td>JSON</td>
+          <td>
+            Title: Pirates of the Caribbean <br />Director: name <br />Genre:
+            Adventure <br />Image Url <br />Description: movie summary
+            <br />Featured
+          </td>
+        </tr>
+        <tr>
+          <td>Returns data about a single movie by title</td>
+          <td>/movies/:title</td>
+          <td>GET</td>
+          <td>Use "_" for spaces (when needed)</td>
+          <td>None</td>
+          <td>/movies/pirates_of_the_caribbean</td>
+          <td>JSON</td>
+          <td>
+            Title: Pirates of the Caribbean <br />Director: name <br />Genre:
+            Adventure <br />Image Url <br />Description: movie summary
+            <br />Featured
+          </td>
+        </tr>
+        <tr>
+          <td>Returns a list of all genres</td>
+          <td>/genres</td>
+          <td>GET</td>
+          <td>None</td>
+          <td>None</td>
+          <td>/genres</td>
+          <td>JSON</td>
+          <td>
+            Action <br />Adventure <br />Comedy <br />Fantasy <br />Horror
+          </td>
+        </tr>
+        <tr>
+          <td>Returns information about a genre by name/title</td>
+          <td>/genres/:title</td>
+          <td>GET</td>
+          <td>Use "_" for spaces (when needed)</td>
+          <td>None</td>
+          <td>genres/science_fiction</td>
+          <td>JSON</td>
+          <td>
+            Science fiction is a genre of speculative fiction that typically
+            deals with imaginative and futuristic concepts such as advanced
+            science and technology, space exploration, time travel, parallel
+            universes, and extraterrestrial life.<br />
+          </td>
+        </tr>
+        <tr>
+          <td>Returns a list of all directors</td>
+          <td>/directors</td>
+          <td>GET</td>
+          <td>None</td>
+          <td>None</td>
+          <td>/directors</td>
+          <td>JSON</td>
+          <td>
+            Jackie Chan
+            <br />Hayao Miyazaki <br />Steven Spielburg
+          </td>
+        </tr>
+        <tr>
+          <td>Returns information about a director by name</td>
+          <td>/directors/:name</td>
+          <td>GET</td>
+          <td>Use "_" for spaces (when needed)</td>
+          <td>None</td>
+          <td>/directors/hayao_miyazaki</td>
+          <td>JSON</td>
+          <td>
+            Hayao Miyazaki: is a Japanese animator, director, producer,
+            screenwriter, author, and manga artist. A co-founder of Studio
+            Ghibli, a film and animation studio, he has attained international
+            acclaim as a masterful storyteller and as a maker of animated
+            feature films, and is widely regarded as one of the most
+            accomplished filmmakers in the history of animation.
+          </td>
+        </tr>
+        <tr>
+          <td>Allows new users to register</td>
+          <td>/users</td>
+          <td>POST</td>
+          <td>None</td>
+          <td>JSON</td>
+          <td>
+            Username: hnewcom<br />Password: password1<br />Email:
+            hnewcom@hotmail.com<br />Birthday: 01/01/1990<br />
+          </td>
+          <td>JSON</td>
+          <td>
+            uuid = " " <br />Username: hnewcom<br />Password: password1<br />Email:
+            hnewcom@hotmail.com<br />Birthday: 01/01/1990
+          </td>
+        </tr>
+        <tr>
+          <td>Allows users to update their user information</td>
+          <td>/users/:id</td>
+          <td>PUT</td>
+          <td>None</td>
+          <td>JSON</td>
+          <td>
+            Username: hnewcom<br />Password: password12345<br />Email:
+            hnewcom@hotmail.com<br />Birthday: 06/02/1992<br />
+          </td>
+          <td>JSON</td>
+          <td>
+            Username: hnewcom<br />Password: password12345<br />Email:
+            hnewcom@hotmail.com<br />Birthday: 06/02/1991
+          </td>
+        </tr>
+        <tr>
+          <td>Allows users to add a movie to their list of favorites</td>
+          <td>/movies/:title</td>
+          <td>POST</td>
+          <td>None</td>
+          <td>JSON</td>
+          <td>/users/:id/movies/:favorites</td>
+          <td>Message</td>
+          <td>
+            movie has been added to favorites list
+          </td>
+        </tr>
+        <tr>
+          <td>Allows users to remove a movie from their list of favorites</td>
+          <td>/users/:id/movies/:favorites</td>
+          <td>DELETE</td>
+          <td>None</td>
+          <td>None</td>
+          <td>/users/hnewcom/movies/:favorites</td>
+          <td>Message</td>
+          <td>
+            movie has been removed from favorites list
+          </td>
+        </tr>
+        <tr>
+          <td>Allows existing users to deregister</td>
+          <td>/users/:id</td>
+          <td>DELETE</td>
+          <td>None</td>
+          <td>None</td>
+          <td>/users/hnewcom</td>
+          <td>Message</td>
+          <td>hnewcom account has been deleted.</td>
+        </tr>
+      </table>
+    </div>
   </body>
 </html>

@@ -1,9 +1,11 @@
 const express = require("express"),
-  morgan = require("morgan");
+  morgan = require("morgan"),
+  bodyParser = require("body-parser"),
+  uuid = require("uuid");
 
 const app = express();
 
-let topMovies = [
+let movies = [
   {
     title: "Harry Potter and the Sorcerer's Stone",
     author: "J.K. Rowling"
@@ -46,6 +48,11 @@ let topMovies = [
   }
 ];
 
+let directors = ["Jackie Chan", "Hayao Miyazaki", "Steven Spielburg"];
+
+let genres = ["Action", "Comedy", "Horror"];
+
+app.use(bodyParser.json());
 app.use(morgan("common"));
 app.use(express.static("public"));
 
@@ -60,16 +67,84 @@ app.get("/", (req, res) => {
   res.send("Welcome to my movie club!");
 });
 
-app.get("/documentation", (req, res) => {
-  res.sendFile("public/documentation.html", { root: __dirname });
+app.get("/users", (req, res) => {
+  res.send("Successful GET request returning user info.");
+});
+
+app.get("/users/:id", (req, res) => {
+  res.json(
+    users.find(user => {
+      return user.id === req.params.id;
+    })
+  );
 });
 
 app.get("/movies", (req, res) => {
-  res.json(topMovies);
+  res.send("Successful GET request returning data for all movies.");
 });
 
-app.get("/secreturl", (req, res) => {
-  res.send("This is a secret url with super top-secret content.");
+app.get("/movies/:title", (req, res) => {
+  res.json(
+    movies.find(movie => {
+      return movie.title === req.params.title;
+    })
+  );
+});
+
+app.get("/genres", (req, res) => {
+  res.send("Successful GET request returning data for all genres.");
+});
+
+app.get("/genres/:title", (req, res) => {
+  resjson(
+    genres.find(genre => {
+      return genre.title === req.params.title;
+    })
+  );
+});
+
+app.get("/directors", (req, res) => {
+  res.send("Successful GET request returning data for all directors.");
+});
+
+app.get("/directors/:name", (req, res) => {
+  res.json(
+    directors.find(director => {
+      return director.name === req.params.name;
+    })
+  );
+});
+
+// POSTS requests
+
+app.post("users", (req, res) => {
+  let newUser = req.body;
+
+  if (!newUser.name) {
+    const message = "Missing name in request body";
+    res.status(400).send(message);
+  } else {
+    newUser.id = uuid.v4();
+    users.push(newUser);
+    res.status(201).send(newUser);
+  }
+});
+
+//PUT requests
+
+// DELETE request
+
+app.delete("/users/:id", (req, res) => {
+  let user = users.find(user => {
+    return user.id === req.params.id;
+  });
+
+  if (user) {
+    users = users.filter(obj => {
+      return obj.id !== req.params.id;
+    });
+    res.status(201).send("User " + req.params.id + " was deleted.");
+  }
 });
 
 //Create server
