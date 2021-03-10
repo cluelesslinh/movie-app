@@ -79,7 +79,7 @@ app.post("users", (req, res) => {
   }
 });
 
-app.post("/movies/:title", (req, res) => {
+app.post("/user/:id/movies/:movieId", (req, res) => {
   res.send("Successful POST to add new favorite movie.");
 });
 
