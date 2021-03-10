@@ -5,49 +5,6 @@ const express = require("express"),
 
 const app = express();
 
-let movies = [
-  {
-    title: "Harry Potter and the Sorcerer's Stone",
-    author: "J.K. Rowling"
-  },
-  {
-    title: "Lord of the Rings",
-    author: "J.R.R. Tolkien"
-  },
-  {
-    title: "Twilight",
-    author: "Stephanie Meyer"
-  },
-  {
-    title: "Rush Hour",
-    author: "Jackie Chan"
-  },
-  {
-    title: "Ip Man",
-    author: "Donnie Yen"
-  },
-  {
-    title: "Fearless",
-    author: "Jet Li"
-  },
-  {
-    title: "Avengers",
-    author: "Stan Lee"
-  },
-  {
-    title: "Spirited Away",
-    author: "Hayao Miyazaki"
-  },
-  {
-    title: "Rurouni Kenshin",
-    author: "Kaoru Kamiya"
-  },
-  {
-    title: "Despicable Me",
-    author: "Pixar"
-  }
-];
-
 let directors = ["Jackie Chan", "Hayao Miyazaki", "Steven Spielburg"];
 
 let genres = ["Action", "Comedy", "Horror"];
@@ -72,11 +29,7 @@ app.get("/users", (req, res) => {
 });
 
 app.get("/users/:id", (req, res) => {
-  res.json(
-    users.find(user => {
-      return user.id === req.params.id;
-    })
-  );
+  res.send("Successful GET request getting single user Id.");
 });
 
 app.get("/movies", (req, res) => {
@@ -84,15 +37,7 @@ app.get("/movies", (req, res) => {
 });
 
 app.get("/movies/:title", (req, res) => {
-  res.json(
-    movies.find(movie => {
-      return movie.title === req.params.title;
-    })
-  );
-});
-
-app.get("/users/id/movies/favorites", (req, res) => {
-  res.send("Successful GET request returning data for all favorite movies.");
+  res.send("Successful GET request getting single movie title.");
 });
 
 app.get("/genres", (req, res) => {
@@ -134,7 +79,7 @@ app.post("users", (req, res) => {
   }
 });
 
-app.post("/users/id/movies/favorites", (req, res) => {
+app.post("/movies/:title", (req, res) => {
   res.send("Successful POST to add new favorite movie.");
 });
 
@@ -142,7 +87,7 @@ app.post("/users/id/movies/favorites", (req, res) => {
 
 // DELETE request
 
-app.delete("/users/id/movies/favorites", (req, res) => {
+app.delete("/users/:id/movies/:movieId", (req, res) => {
   res.send("Successful DELETE of listed favorite movie.");
 });
 
