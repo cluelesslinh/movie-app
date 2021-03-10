@@ -91,6 +91,10 @@ app.get("/movies/:title", (req, res) => {
   );
 });
 
+app.get("/users/id/movies/favorites", (req, res) => {
+  res.send("Successful GET request returning data for all favorite movies.");
+});
+
 app.get("/genres", (req, res) => {
   res.send("Successful GET request returning data for all genres.");
 });
@@ -130,21 +134,16 @@ app.post("users", (req, res) => {
   }
 });
 
+app.post("/users/id/movies/favorites", (req, res) => {
+  res.send("Successful POST to add new favorite movie.");
+});
+
 //PUT requests
 
 // DELETE request
 
-app.delete("/users/:id", (req, res) => {
-  let user = users.find(user => {
-    return user.id === req.params.id;
-  });
-
-  if (user) {
-    users = users.filter(obj => {
-      return obj.id !== req.params.id;
-    });
-    res.status(201).send("User " + req.params.id + " was deleted.");
-  }
+app.delete("/users/id/movies/favorites", (req, res) => {
+  res.send("Successful DELETE of listed favorite movie.");
 });
 
 //Create server
