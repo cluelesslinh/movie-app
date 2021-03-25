@@ -69,7 +69,7 @@
         </tr>
         <tr>
           <td>Returns information about a genre by name/title</td>
-          <td>/genres/:title</td>
+          <td>/genres/:name</td>
           <td>GET</td>
           <td>Use "_" for spaces (when needed)</td>
           <td>None</td>
@@ -130,7 +130,7 @@
         </tr>
         <tr>
           <td>Allows users to update their user information</td>
-          <td>/users/:id</td>
+          <td>/users/:username</td>
           <td>PUT</td>
           <td>None</td>
           <td>JSON</td>
@@ -150,7 +150,7 @@
           <td>POST</td>
           <td>None</td>
           <td>JSON</td>
-          <td>/users/:id/movies/:favorites</td>
+          <td>/users/:username/movies/:favoriteMovies</td>
           <td>Message</td>
           <td>
             movie has been added to favorites list
@@ -158,11 +158,11 @@
         </tr>
         <tr>
           <td>Allows users to remove a movie from their list of favorites</td>
-          <td>/users/:id/movies/:favorites</td>
+          <td>/users/:id/movies/:favoriteMovies</td>
           <td>DELETE</td>
           <td>None</td>
           <td>None</td>
-          <td>/users/hnewcom/movies/:favorites</td>
+          <td>/users/hnewcom/movies/:favoriteMovies</td>
           <td>Message</td>
           <td>
             movie has been removed from favorites list
@@ -170,7 +170,7 @@
         </tr>
         <tr>
           <td>Allows existing users to deregister</td>
-          <td>/users/:id</td>
+          <td>/users/:username</td>
           <td>DELETE</td>
           <td>None</td>
           <td>None</td>
