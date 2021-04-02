@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 const mongoose = require("mongoose");
 
 let movieSchema = mongoose.Schema({
