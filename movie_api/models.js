@@ -1,6 +1,7 @@
 /*jshint esversion: 6 */
 
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 let movieSchema = mongoose.Schema({
   Title: { type: String, required: true },
@@ -21,9 +22,17 @@ let userSchema = mongoose.Schema({
   Username: { type: String, required: true },
   Password: { type: String, required: true },
   Email: { type: String, required: true },
-  Brithday: Date,
+  Birthday: Date,
   FavoriteMovies: [{ type: mongoose.Schema.Types.ObjectId, ref: "Movie" }]
 });
+
+userSchema.statics.hashPassword = password => {
+  return bcrypt.hashSync(passowrd, 10);
+};
+
+userSchema.methods.validatePassword = function(password) {
+  return bcrypt.compareSync(password, this.password);
+};
 
 let genreSchema = mongoose.Schema({
   Name: { type: String, required: true },
