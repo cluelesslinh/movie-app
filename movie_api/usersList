@@ -1,4 +1,0 @@
-{"_id":{"$oid":"6056cbe4aa12229e4d2da91c"},"Username":"erzascarlet","Email":"erzascarlet@gmail.com","Password":"scarlet123","Birthday":{"$date":"1991-01-01T00:00:00Z"},"FavoriteMovies":[{"$oid":"6056c6f4aa12229e4d2da915"}]}
-{"_id":{"$oid":"6056cc45aa12229e4d2da91d"},"Username":"fateswhisper","Email":"fateswhisper@gmail.com","Password":"whisper123","Birthday":{"$date":"1992-02-02T00:00:00Z"},"FavoriteMovies":[{"$oid":"6057da48aa12229e4d2da924"}]}
-{"_id":{"$oid":"6056ccb5aa12229e4d2da91e"},"Username":"himurakenshin","Email":"himurakenshin@gmail.com","Password":"kenshin123","Birthday":{"$date":"1993-03-03T00:00:00Z"},"FavoriteMovies":[{"$oid":"6056c6f4aa12229e4d2da915"},{"$oid":"6056c775aa12229e4d2da916"}]}
-{"_id":{"$oid":"6056cd2faa12229e4d2da91f"},"Username":"dragon","Email":"dragon@gmail.com","Password":"dragon123","Birthday":{"$date":"1994-04-04T00:00:00Z"},"FavoriteMovies":[{"$oid":"6056c650aa12229e4d2da914"}]}

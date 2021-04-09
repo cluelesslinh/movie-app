@@ -1,15 +1,20 @@
 /*jshint esversion: 6 */
-
-const express = require("express"),
-  morgan = require("morgan"),
-  bodyParser = require("body-parser"),
-  uuid = require("uuid");
-
+const express = require("express");
+const app = express();
+const morgan = require("morgan");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const uuid = require("uuid");
 const passport = require("passport");
+const cors = require("cors");
+const { check, validationResult } = require("express-validator");
 require("./passport");
 
-const mongoose = require("mongoose");
 const Models = require("./models.js");
+const Movies = Models.Movie;
+const Users = Models.User;
+const Genres = Models.Genre;
+const Directors = Models.Director;
 
 /*
 mongoose.connect("mongodb://localhost:27017/myFlixDB", {
@@ -23,27 +28,15 @@ mongoose.connect(process.env.CONNECTION_URI, {
   useUnifiedTopology: true
 });
 
-const Movies = Models.Movie;
-const Users = Models.User;
-const Genres = Models.Genre;
-const Directors = Models.Director;
-
-const app = express();
-
-const cors = require("cors");
-app.use(cors());
-
-const { check, validationResult } = require("express-validator");
-
-app.use(bodyParser.json());
-let auth = require("./auth")(app);
 app.use(morgan("common"));
-app.use(express.static("public"));
-
+app.use(bodyParser.json());
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Something broke!");
 });
+app.use(express.static("public"));
+let auth = require("./auth")(app);
+app.use(cors());
 
 // GET requests
 
@@ -178,7 +171,7 @@ app.post(
     check("Username", "Username is required").isLength({ min: 5 }),
     check(
       "Username",
-      "Username contains non alphanumeric characters - not allowed"
+      "Username contains non alphanumeric characters - not allowed."
     ).isAlphanumeric(),
     check("Password", "Password is required")
       .not()
@@ -189,14 +182,14 @@ app.post(
     let errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: error.array() });
+      return res.status(422).json({ errors: errors.array() });
     }
 
     let hashedPassword = Users.hashPassword(req.body.Password);
     Users.findOne({ Username: req.body.Username })
       .then(user => {
         if (user) {
-          return res.status(400).send(req.body.Username + "already exists");
+          return res.status(400).send(req.body.Username + " already exists");
         } else {
           Users.create({
             Username: req.body.Username,
@@ -229,7 +222,7 @@ app.post(
       {
         $push: { FavoriteMovies: req.params.movieID }
       },
-      { new: true }, // This line makes sure that the updated document is returned
+      { new: true },
       (err, updatedUser) => {
         if (err) {
           console.error(err);

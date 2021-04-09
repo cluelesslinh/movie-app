@@ -27,7 +27,7 @@ let userSchema = mongoose.Schema({
 });
 
 userSchema.statics.hashPassword = password => {
-  return bcrypt.hashSync(passowrd, 10);
+  return bcrypt.hashSync(password, 10);
 };
 
 userSchema.methods.validatePassword = function(password) {
@@ -49,7 +49,7 @@ let directorSchema = mongoose.Schema({
 let Movie = mongoose.model("Movie", movieSchema);
 let User = mongoose.model("User", userSchema);
 let Genre = mongoose.model("Genre", genreSchema);
-let Director = mongoose.model("Director", genreSchema);
+let Director = mongoose.model("Director", directorSchema);
 
 module.exports.Movie = Movie;
 module.exports.User = User;
