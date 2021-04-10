@@ -36,7 +36,8 @@ let auth = require("./auth")(app);
 
 let allowedOrigins = [
   "http://localhost:8080",
-  "https://myflixcl.herokuapp.com/"
+  "https://myflixcl.herokuapp.com/",
+  "https://dashboard.heroku.com/"
 ];
 
 app.use(
