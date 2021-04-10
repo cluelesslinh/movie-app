@@ -1,12 +1,8 @@
 {
-  "name": "movie-app",
-  "version": "1.0.0",
-  "main": "index.js",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
-    "eslint": "^7.21.0",
     "express": "^4.17.1",
     "express-validator": "^6.10.0",
     "jsonwebtoken": "^8.5.1",
@@ -18,16 +14,22 @@
     "passport-local": "^1.0.0",
     "uuid": "^8.3.2"
   },
-  "scripts": {
-    "start": "node index.js"
+  "name": "movie-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "eslint": "^7.24.0"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cluelesslinh/movie-app.git"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/cluelesslinh/movie-app/issues"
   },
