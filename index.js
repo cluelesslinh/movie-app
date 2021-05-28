@@ -33,7 +33,7 @@ app.use(express.static("public"));
 
 let auth = require("./auth")(app);
 
-let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234'];
+let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'https://myflixcl.herokuapp.com/'];
 
 app.use(cors({
   origin: (origin, callback) => {
