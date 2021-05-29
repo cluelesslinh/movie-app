@@ -16,7 +16,6 @@ passport.use(
       passwordField: "Password"
     },
     (username, password, callback) => {
-      console.log(username + "  " + password);
       Users.findOne({ Username: username }, (error, user) => {
         if (error) {
           console.log(error);
