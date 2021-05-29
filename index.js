@@ -1,13 +1,13 @@
 /*jshint esversion: 6 */
+const cors = require("cors");
 const express = require("express");
-const app = express();
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const passport = require("passport");
-const cors = require("cors");
-const { check, validationResult } = require("express-validator");
 require("./passport");
+
+const { check, validationResult } = require("express-validator");
 
 const Models = require("./models.js");
 const Movies = Models.Movie;
@@ -15,25 +15,9 @@ const Users = Models.User;
 const Genres = Models.Genre;
 const Directors = Models.Director;
 
-/*
-mongoose.connect("mongodb://localhost:27017/myFlixDB", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
-*/
+const app = express();
 
-mongoose.connect(process.env.CONNECTION_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
-
-app.use(morgan("common"));
-app.use(bodyParser.json());
-app.use(express.static("public"));
-
-let auth = require("./auth")(app);
-
-let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'https://myflixcl.herokuapp.com'];
+let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'https://myflixcl.herokuapp.com/'];
 
 app.use(cors({
   origin: (origin, callback) => {
@@ -46,10 +30,21 @@ app.use(cors({
   }
 }));
 
+app.use(morgan("common"));
+app.use(bodyParser.json());
+app.use(express.static("public"));
+
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Something broke!");
 });
+
+mongoose.connect(process.env.CONNECTION_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+require("./auth")(app);
 
 // GET requests
 
@@ -87,7 +82,6 @@ app.get(
   }
 );
 
-/*
  app.get(
   "/movies",
   passport.authenticate("jwt", { session: false }),
@@ -102,18 +96,6 @@ app.get(
       });
   }
 );
-*/
-
-app.get("/movies", function (req, res) {
-  Movies.find()
-    .then(function (movies) {
-      res.status(201).json(movies);
-    })
-    .catch(function (error) {
-      console.error(error);
-      res.status(500).send("Error: " + error);
-    });
-});
 
 app.get(
   "/movies/:Title",
