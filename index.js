@@ -102,6 +102,8 @@ app.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Movies.findOne({ Title: req.params.Title })
+      .populate( path: "Genre")
+      .populate( path: "Director")
       .then(movie => {
         res.json(movie);
       })
@@ -166,7 +168,7 @@ app.get(
         res.json(director);
       })
       .catch(err => {
-        consle.error(err);
+        console.error(err);
         res.status(500).send("Error: " + err);
       });
   }
@@ -236,7 +238,7 @@ app.post(
     Users.findOneAndUpdate(
       { Username: req.params.Username },
       {
-        $push: { FavoriteMovies: req.params.movieID }
+        $push: { FavoriteMovies: mongoose.Types.ObjectId(req.params.movieID) }
       },
       { new: true },
       (err, updatedUser) => {

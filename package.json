@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/cors": "^2.8.10",
     "@types/jsonwebtoken": "^8.5.1",
     "@types/morgan": "^1.9.2",
