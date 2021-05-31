@@ -87,6 +87,8 @@ app.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Movies.find()
+      .populate("Genre")
+      .populate("Director")
       .then(movies => {
         res.status(201).json(movies);
       })
