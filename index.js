@@ -84,11 +84,9 @@ app.get(
 
  app.get(
   "/movies",
-  passport.authenticate("jwt", { session: false }),
+//  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Movies.find()
-      .populate("Genre")
-      .populate("Director")
       .then(movies => {
         res.status(201).json(movies);
       })
@@ -101,11 +99,9 @@ app.get(
 
 app.get(
   "/movies/:Title",
-  passport.authenticate("jwt", { session: false }),
+//  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Movies.findOne({ Title: req.params.Title })
-      .populate("Genre")
-      .populate("Director")
       .then(movie => {
         res.json(movie);
       })
