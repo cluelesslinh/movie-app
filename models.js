@@ -17,7 +17,7 @@ let userSchema = mongoose.Schema({
   Username: { type: String, required: true },
   Password: { type: String, required: true },
   Email: { type: String, required: true },
-  Birthday: Date,
+  Birthdate: Date,
   FavoriteMovies: [{ type: mongoose.Schema.Types.ObjectId, ref: "Movie" }]
 });
 
@@ -37,8 +37,8 @@ let genreSchema = mongoose.Schema({
 let directorSchema = mongoose.Schema({
   Name: { type: String, required: true },
   Bio: { type: String, required: true },
-  Birth: Date,
-  Death: Date
+  Birthdate: Date,
+  Deathdate: Date
 });
 
 let Movie = mongoose.model("Movie", movieSchema);
