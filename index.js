@@ -100,6 +100,23 @@ app.get(
 );
 
 app.get(
+  "/:Username/favorites",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Movies.findOne({ Title: req.params.Title })
+      .populate("Genre")
+      .populate("Director")
+      .then(movie => {
+        res.json(movie);
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).send("Error " + err);
+      });
+  }
+);
+
+app.get(
   "/movies/:Title",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
