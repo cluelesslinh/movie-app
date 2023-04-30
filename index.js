@@ -17,7 +17,7 @@ const Directors = Models.Director;
 
 const app = express();
 
-let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'http://localhost:4200', 'https://movie-app-sandy-psi.vercel.app/', 'https://myflixcl.netlify.app', 'https://cluelesslinh.github.io'];
+let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'http://localhost:4200', 'https://vercel.com/', 'https://myflixcl.netlify.app', 'https://cluelesslinh.github.io'];
 
 app.use(cors({
   origin: (origin, callback) => {
