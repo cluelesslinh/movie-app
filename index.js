@@ -39,7 +39,7 @@ app.use((err, req, res, next) => {
   res.status(500).send("Something broke!");
 });
 
-mongoose.connect(process.env.CONNECTION_URI, {
+mongoose.connect('mongodb://localhost:27017/myFlixDB', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
